@@ -187,7 +187,7 @@ class GroupResource(ModelResource):
             'name': ALL,
             'city': ALL,
         }
-        ordering = ['title', 'last_modified']
+        ordering = ['title', 'last_modified', 'date_joined']
 
 
 class ProfileResource(TypeFilteredResource):
