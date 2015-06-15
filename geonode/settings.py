@@ -503,7 +503,7 @@ OGC_SERVER = {
         'MAPFISH_PRINT_ENABLED': True,
         'PRINT_NG_ENABLED': True,
         'GEONODE_SECURITY_ENABLED': True,
-        'GEOGIG_ENABLED': False,
+        'GEOGIT_ENABLED': False,
         'WMST_ENABLED': False,
         'BACKEND_WRITE_ENABLED': True,
         'WPS_ENABLED': False,
@@ -519,7 +519,7 @@ UPLOADER = {
     'BACKEND': 'geonode.rest',
     'OPTIONS': {
         'TIME_ENABLED': False,
-        'GEOGIG_ENABLED': False,
+        'GEOGIT_ENABLED': False,
     }
 }
 
