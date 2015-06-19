@@ -233,11 +233,12 @@ def geoserver_post_save(instance, sender, **kwargs):
                                        )
                                        )
 
-        if gs_resource.store.type.lower() == 'geogit':
-            repo_url = '{url}geogit/{workspace}:{store}'.format(
+        if gs_resource.store.type and gs_resource.store.type.lower() == 'geogig' and \
+                gs_resource.store.connection_parameters.get('geogig_repository'):
+
+            repo_url = '{url}geogig/{geogig_repository}'.format(
                 url=ogc_server_settings.public_url,
-                workspace=instance.workspace,
-                store=instance.store)
+                geogig_repository=gs_resource.store.connection_parameters.get('geogig_repository'))
 
             path = gs_resource.dom.findall('nativeName')
 
@@ -247,7 +248,7 @@ def geoserver_post_save(instance, sender, **kwargs):
             Link.objects.get_or_create(resource=instance.resourcebase_ptr,
                                        url=repo_url,
                                        defaults=dict(extension='html',
-                                                     name='Clone in GeoGit',
+                                                     name='Clone in GeoGig',
                                                      mime='text/xml',
                                                      link_type='html'
                                                      )
@@ -261,7 +262,7 @@ def geoserver_post_save(instance, sender, **kwargs):
             Link.objects.get_or_create(resource=instance.resourcebase_ptr,
                                        url=command_url('log'),
                                        defaults=dict(extension='json',
-                                                     name='GeoGit log',
+                                                     name='GeoGig log',
                                                      mime='application/json',
                                                      link_type='html'
                                                      )
@@ -270,7 +271,7 @@ def geoserver_post_save(instance, sender, **kwargs):
             Link.objects.get_or_create(resource=instance.resourcebase_ptr,
                                        url=command_url('statistics'),
                                        defaults=dict(extension='json',
-                                                     name='GeoGit statistics',
+                                                     name='GeoGig statistics',
                                                      mime='application/json',
                                                      link_type='html'
                                                      )
