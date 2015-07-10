@@ -231,6 +231,11 @@ GEONODE_APPS = (
     'geonode.groups',
     'geonode.services',
 
+    'geonode.annotations',
+    # GeoNode Contrib Apps
+
+    # 'geonode.contrib.dynamic',
+
     # GeoServer Apps
     # Geoserver needs to come last because
     # it's signals may rely on other apps' signals.
