@@ -524,7 +524,7 @@ def new_map_config(request):
                 else:
                     maplayer = MapLayer(
                         map=map_obj,
-                        name=layer.typename,
+                        name=layer.name,
                         ows_url=layer.ows_url,
                         layer_params=json.dumps(config),
                         visibility=True
