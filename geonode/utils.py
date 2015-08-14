@@ -296,7 +296,8 @@ class GXPMapBase(object):
             'id': self.id,
             'about': {
                 'title': self.title,
-                'abstract': self.abstract
+                'abstract': self.abstract,
+                'owner': self.poc.name_long if hasattr(self,"poc") else ''
             },
             'defaultSourceType': "gxp_wmscsource",
             'sources': sources,
