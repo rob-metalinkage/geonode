@@ -14,6 +14,8 @@ from django.core.mail import send_mail
 from taggit.managers import TaggableManager
 from guardian.shortcuts import get_objects_for_group
 
+from django.utils import timezone
+from geonode.base.enumerations import COUNTRIES
 
 class GroupProfile(models.Model):
     GROUP_CHOICES = [
@@ -43,7 +45,8 @@ class GroupProfile(models.Model):
     keywords = TaggableManager(
         _('Keywords'),
         help_text=_("A space or comma-separated list of keywords"),
-        blank=True)
+        blank=True,
+        related_name='group_keywords')
     access = models.CharField(
         _('Access'),
         max_length=15,
@@ -51,6 +54,19 @@ class GroupProfile(models.Model):
         choices=GROUP_CHOICES,
         help_text=access_help_text)
     last_modified = models.DateTimeField(auto_now=True)
+    date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+    city = models.CharField(
+        _('City'),
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text=_('city of the location'))
+    country = models.CharField(
+        choices=COUNTRIES,
+        max_length=3,
+        blank=True,
+        null=True,
+        help_text=_('country of the physical address'))
 
     def save(self, *args, **kwargs):
         group, created = Group.objects.get_or_create(name=self.slug)
