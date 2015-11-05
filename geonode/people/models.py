@@ -42,6 +42,12 @@ class Profile(AbstractUser):
 
     """Fully featured Geonode user"""
 
+    # MapStory stuff
+    volunteer_technical_community = models.NullBooleanField(
+        _('Volunteer Technical Community'),
+        help_text=_('indicates membership of the Volunteer Technical Community'),
+        default=False)
+    # End MapStory stuff
     organization = models.CharField(
         _('Organization Name'),
         max_length=255,
