@@ -300,7 +300,7 @@ def map_embed(
 
 # MAPS VIEWER #
 
-
+@xframe_options_exempt
 def map_view(request, mapid, snapshot=None, template='maps/map_view.html'):
     """
     The view that returns the map composer opened to
